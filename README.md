@@ -1,4 +1,6 @@
 # NuOscProbPlotter
 Neutrino oscillation probability plotter using pyroot (+python3)
 
-![Example](https://raw.githubusercontent.com/jedori0228/NuOscProbPlotter/08edc132947378a1de0befe7d9ff6d243c7f090d/example/output_LoE_0_to_30000_dcp_0.png)
+![Example_NH](https://raw.githubusercontent.com/jedori0228/NuOscProbPlotter/d096aa966c0c1d16b0b9201c8bad7be9a41af3b0/example/output_LoE_0_to_30000_dcp_0_NH.png)
+
+![Example_IH](https://raw.githubusercontent.com/jedori0228/NuOscProbPlotter/d096aa966c0c1d16b0b9201c8bad7be9a41af3b0/example/output_LoE_0_to_30000_dcp_0_IH.png)
