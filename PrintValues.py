@@ -38,15 +38,19 @@ for i in range(0,int(len(words_Flavors)/2)):
 
 ## Parameters
 
+## 12
 S2_12 = 0.307
-Theta_12 = np.arcsin( np.sqrt(S2_12) )
 m2_12 = 7.53E-5
+Theta_12 = np.arcsin( np.sqrt(S2_12) )
 
-S2_23 = 0.547
-Theta_23 = np.arcsin( np.sqrt(S2_23) )
-m2_32 = 2.5E-3
+## 23
+S2_23 = 0.545
+m2_32 = 2.453E-3
 if args.hierarchy=='I':
-  m2_32 *= -1.
+  S2_23 = 0.547
+  m2_32 = -2.546E-3
+
+Theta_23 = np.arcsin( np.sqrt(S2_23) )
 
 S2_13 = 2.18E-2
 Theta_13 = np.arcsin( np.sqrt(S2_13) )

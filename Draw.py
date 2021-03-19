@@ -1,5 +1,6 @@
 import tdrstyle,ROOT
 from array import array
+import numpy as np
 
 def IntToFlavString(iflav):
   if iflav==0:
@@ -22,7 +23,8 @@ exec('from %s import *'%(args.inputName.replace('.py','')))
 
 tdrstyle.setTDRStyle()
 
-c1 = ROOT.TCanvas('c1', '', 800, 800)
+c1 = ROOT.TCanvas('c1', '', 1200, 800)
+c1.SetRightMargin(0.3)
 c1.cd()
 
 drawMode = -1
@@ -68,12 +70,27 @@ lg.Draw()
 from math import pi
 tL = ROOT.TLatex()
 tL.SetNDC()
-tL.SetTextSize(0.037)
-tL.DrawLatex(0.75, 0.88, "#font[42]{#delta_{CP}=%1.1f#pi}"%(DeltaCP))
-tL.DrawLatex(0.75, 0.83, "#font[42]{%sH}"%(massHierarchy))
-if drawMode==1:
-  tL.DrawLatex(0.75, 0.96, "L=%1.3fkm"%(Linput))
+tL.SetTextSize(0.04)
 
+tlatexsToDraw = [
+"#font[42]{sin#theta^{2}_{12}="+ ( "%.2e}"%(pow( np.sin(Theta_12),2 )) ).replace('e','#times10^{')+'}',
+"#font[42]{sin#theta^{2}_{23}="+ ( "%.2e}"%(pow( np.sin(Theta_23),2 )) ).replace('e','#times10^{')+'}',
+"#font[42]{sin#theta^{2}_{13}="+ ( "%.2e}"%(pow( np.sin(Theta_13),2 )) ).replace('e','#times10^{')+'}',
+"#font[42]{#Delta m^{2}_{12}="+ ( "%.2e}"%( m2_12 ) ).replace('e','#times10^{')+' eV^{2}}',
+"#font[42]{#Delta m^{2}_{32}="+ ( "%.2e}"%( m2_32 ) ).replace('e','#times10^{')+' eV^{2}}',
+"#font[42]{%sH}"%(massHierarchy),
+"#font[42]{#delta_{CP}=%1.1f#pi}"%(DeltaCP),
+]
+
+if drawMode==1:
+  tlatexsToDraw.append( "#font[42]{L=%1.3f km}"%(Linput) )
+
+tlYTop = 0.91
+dtlY = 0.07
+for tlatex in tlatexsToDraw:
+  print tlatex
+  tL.DrawLatex(0.75, tlYTop, tlatex)
+  tlYTop -= dtlY
 
 c1.SaveAs(args.outputName+'.pdf')
 
