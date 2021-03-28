@@ -9,6 +9,7 @@ parser.add_argument('-f',dest='Flavors',help='e=0/m=1/t=2, and put 0,1 if you wa
 parser.add_argument('-o',dest='outputName',default='output')
 parser.add_argument('--hierarchy',dest='hierarchy',default='N',help='N for normal, I for inveted')
 parser.add_argument('--DeltaCP',dest='DeltaCP',default='0',help='DeltaCP/PI')
+parser.add_argument('--Params',dest='Params',default='params_Default.py', help='python file which contains oscillation parameter values')
 args = parser.parse_args()
 
 ## Parse args.Variable
@@ -38,21 +39,23 @@ for i in range(0,int(len(words_Flavors)/2)):
 
 ## Parameters
 
+exec('from %s import *'%(args.Params.replace('.py','')))
+
 ## 12
-S2_12 = 0.307
-m2_12 = 7.53E-5
+S2_12 = S2_12__
+m2_12 = m2_12__
 Theta_12 = np.arcsin( np.sqrt(S2_12) )
 
 ## 23
-S2_23 = 0.545
-m2_32 = 2.453E-3
+S2_23 = S2_23_NH__
+m2_32 = m2_32_HN__
 if args.hierarchy=='I':
-  S2_23 = 0.547
-  m2_32 = -2.546E-3
-
+  S2_23 = S2_23_IH__
+  m2_32 = m2_32_IN__
 Theta_23 = np.arcsin( np.sqrt(S2_23) )
 
-S2_13 = 2.18E-2
+## 13
+S2_13 = S2_13__
 Theta_13 = np.arcsin( np.sqrt(S2_13) )
 
 from math import pi
